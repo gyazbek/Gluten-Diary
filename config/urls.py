@@ -4,9 +4,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from django.urls import path
+from . import views
+
 
 urlpatterns = [
-    url(r"^$", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path('', views.IndexView.as_view(), name='home'),
+
+    # url(r"^$", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     url(
         r"^about/$",
         TemplateView.as_view(template_name="pages/about.html"),

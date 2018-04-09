@@ -12,6 +12,22 @@
   border-color: #eed3d7;
 }
 
+/*************************/
+/* Navbar Customizations  */
+/*************************/
+
+.navbar {
+  background-color: #8ce88c;
+}
+
+/*************************/
+/* Home page Customizations  */
+/*************************/
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+/*************************/
+/* Login Customizations  */
+/*************************/
 
 .sign-in-container  {
   max-width: 430px;
