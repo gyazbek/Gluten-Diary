@@ -7,6 +7,8 @@
 {% block head_title %}{% trans "Account" %}{% endblock %}
 
 {% block inner %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
 <h1>{% trans "E-mail Addresses" %}</h1>
 
 {% if user.emailaddress_set.all %}
@@ -56,6 +58,8 @@
         <button class="btn btn-primary" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
     </form>
 
+    </div>
+  </div>
 {% endblock %}
 
 
