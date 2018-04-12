@@ -195,3 +195,7 @@ footer {
   cursor: pointer; /* Cursor on hover */
 }
 
+
+.dropdown-filters select {
+  width: auto;
+}

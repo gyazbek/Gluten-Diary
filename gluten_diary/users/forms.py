@@ -27,8 +27,7 @@ class ProfileForm(forms.ModelForm):
 class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super(CustomLoginForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-
+        # self.helper = FormHelper()
 
 
         loginField = self.fields.get("login")
@@ -40,4 +39,3 @@ class CustomLoginForm(LoginForm):
             
         # self.helper.form_show_labels = False
         # self.helper.form_class = 'form-horizontal'
-        self.helper.field_class = 'col-xs-8'

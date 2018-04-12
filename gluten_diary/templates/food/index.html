@@ -1,17 +1,28 @@
 {% extends "base.html" %}
+{% load static i18n %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Gluten Diary</h1>
     <p class="lead">Keep a diary of gluten reactions, and share with others.</p>
 </div>
-
-{% if food_list %}
-
-<div class="my-3 p-3 bg-white rounded box-shadow">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Latest</h6>
+<div class="clearfix">
+    <form>
+    <div class="float-left dropdown-filters">
+        {{ form.q }}
+    </div>
+    <div class="float-right dropdown-filters">
+        {{ form.order }}
+        {{ form.type }}
+        {{ form.brand }}
+    </div>
+    </form>
+</div>
+<div class=" my-3 p-3 bg-white rounded box-shadow">
+    {% if food_list %}
+    <!-- <h6 class="border-bottom border-gray pb-2 mb-0">Latest</h6> -->
     {% for food in food_list %}
-    
     <div class="media text-muted pt-3">
         <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
         <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -23,11 +34,9 @@
         </div>
     </div>
     {% endfor %}
-    
     {% if page_obj.has_other_pages %}
     <small class="d-block  mt-3">
         <nav aria-label="Page navigation">
-            
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
                 <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
@@ -50,7 +59,12 @@
         </nav>
     </small>
     {% endif %}
-    </div>
+    {% else %}
+    <p class="text-center text-muted lead">Sorry, there's nothing here.</p>
     {% endif %}
-    
-    {% endblock %}
+</div>
+{% endblock %}
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/food/index.js' %}"></script>
+{% endblock %}
