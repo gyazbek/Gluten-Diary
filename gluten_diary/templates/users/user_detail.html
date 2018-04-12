@@ -4,30 +4,99 @@
 {% block title %}User: {{ object.username }}{% endblock %}
 
 {% block content %}
-<div class="container">
- 
-  <div class="row">
-    <div class="col-md-6">
 
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
-
-
-{% if object == request.user %}
-<!-- Action buttons -->
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
+  <div class="row user-profile">
+    <div class="main-col col-xs-12 col-sm-12 col-md-8 col-lg-8" >
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{ object.username }}</h3>
+            {% if object.name %}
+            <p>{{ object.name }}</p>
+            {% endif %}
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3 col-lg-3 " align="center">
+                {% if object.avatar %}
+                <img alt="User Pic" src="{{object.avatar}}" class="rounded img-thumbnail avatar"> 
+                {% else %}
+                <img alt="User Pic" src="{% static 'images/placeholder_avatar.png' %}" class="rounded img-responsive avatar"> 
+                {% endif %}
+              </div>
+              
+              <div class=" col-md-9 col-lg-9 "> 
+                <table class="table">
+                  <tbody>
+                    <tr>
+                      <td>Join date:</td>
+                      <td>06/23/2013</td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td>{{object.email}}</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+                
+                <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">Edit</a>
+                <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">Change E-Mail</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  
+{% if food_list %}
 
-<!-- End Action buttons -->
-{% endif %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">Latest Gluten Diaries</h6>
+    {% for food in food_list %}
+    
+    <div class="media text-muted pt-3">
+        <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <strong class="text-gray-dark">{{food.title}}</strong>
+                <a href="{% url 'food:detail' food.id %}">View</a>
+            </div>
+            <span class="d-block">@{{food.author.username}}</span>
+        </div>
+    </div>
+    {% endfor %}
+    
+    {% if food_list.has_other_pages %}
+    <small class="d-block  mt-3">
+        <nav aria-label="Page navigation">
+            
+            <ul class="pagination justify-content-center">
+                {% if food_list.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ food_list.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+                {% for i in food_list.paginator.page_range %}
+                {% if food_list.number == i %}
+                <li class="page-item active"><span  class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if food_list.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ food_list.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </small>
+    {% endif %}
+    </div>
+    {% endif %}
 
-</div>
-</div>
+
 {% endblock content %}
 

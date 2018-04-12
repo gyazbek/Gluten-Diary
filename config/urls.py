@@ -5,11 +5,15 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 from django.urls import path
+from django.views.decorators.cache import cache_page
+
 from . import views
 
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='home'),
+    path('',cache_page(5)( views.IndexView.as_view()), name='home'),
+    path('food/', include('food.urls')),
+    url(r'^comments/', include('django_comments.urls')),
 
     # url(r"^$", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     url(

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load comments %}
+{% load crispy_forms_tags %}
+{% load static i18n %}
+{% block content %}
+
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">{{food.title}}</h1>
+        <p class="lead">{{food.notes}}</p>
+</div>
+
+<div class="my-3 p-3 bg-white rounded box-shadow">
+        <div class="media text-muted pt-3">
+                <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                        </div>
+                        <span class="d-block">@{{food.author.username}}</span>
+                </div>
+        </div>
+</div>
+<div class="comments">
+        {% get_comment_count for food as comment_count %}
+        <h6 class="border-bottom border-gray pb-2 mb-0">{{comment_count}} {% if comment_count == 1 %}Comment{% else %}Comments{%endif%}  </h6>
+        {% get_comment_list for food as comment_list %}
+        {% for comment in comment_list %}
+        <div class="comment-wrap">
+                <div class="photo">
+                {% if comment.user.avatar %}
+                <img alt="User Pic" src="{{comment.user.avatar}}" class="rounded img-thumbnail avatar"> 
+                {% else %}
+                <img alt="User Pic" src="{% static 'images/placeholder_avatar.png' %}" class="rounded img-responsive avatar"> 
+                {% endif %}
+                {{comment.user.user_avail_name}}
+                </div>
+                <div class="comment-block">
+                        <p class="comment-text">{{comment.comment}}</p>
+                        <div class="bottom-comment">
+                                <div class="comment-date">{{comment.submit_date | date}}</div>
+                                <ul class="comment-actions">
+                                        <li class="complain">Report</li>
+                                </ul>
+                        </div>
+                </div>
+        </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+        <div class="leave-comment-container">
+                {% get_comment_form for food as form %}
+                <form action="{% comment_form_target %}" method="POST">
+                        {% csrf_token %}
+                        {{ form.comment | as_crispy_field  }}
+                        {{ form.honeypot | as_crispy_field  }}
+                        {{ form.content_type | as_crispy_field  }}
+                        {{ form.object_pk | as_crispy_field  }}
+                        {{ form.timestamp | as_crispy_field  }}
+                        {{ form.security_hash | as_crispy_field }}
+                        <input type="hidden" name="next" value="{% url 'food:detail' object.id %}" />
+                        <div class="clearfix">
+                                <input class="float-right btn-success btn" type="submit" value="Add comment" id="id_submit" />
+                        </div>
+                </form>
+        </div>
+        {% else %}
+        <p>Please <a href="{% url 'account_login' %}">log in</a> to leave a comment.</p>
+        {% endif %}
+</div>
+
+
+
+
+{% endblock %}
+

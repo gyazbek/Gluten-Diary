@@ -8,7 +8,6 @@ from food.models import Type, Brand, Food
 
 
 
-
 class IndexView(generic.ListView):
     template_name = 'pages/home.html'
     context_object_name = 'latest_food_list'

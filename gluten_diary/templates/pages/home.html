@@ -18,7 +18,7 @@
               <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <div class="d-flex justify-content-between align-items-center w-100">
                   <strong class="text-gray-dark">{{food.title}}</strong>
-                  <a href="#">View</a>
+                  <a href="{% url 'food:detail' food.id %}">View</a>
                 </div>
                 <span class="d-block">@{{food.author.username}}</span>
               </div>

@@ -34,6 +34,8 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
 
+MIN_AVATAR_IMAGE_WIDTH = 160
+MIN_AVATAR_IMAGE_HEIGHT = 160
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -61,6 +63,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.humanize', # Handy template tags
     'django.contrib.admin',
+    'django_comments',
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',
@@ -72,9 +75,16 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'gluten_diary.users.apps.UsersConfig',
     'gluten_diary.food.apps.FoodConfig',
+    'gluten_diary.custom_comments.apps.CustomCommentsConfig',
+
+
 
     # Your stuff: custom apps go here
 ]
+
+COMMENTS_APP = 'custom_comments'
+
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

@@ -27,6 +27,8 @@ class Food(models.Model):
         default=0,
         validators=[MaxValueValidator(10), MinValueValidator(0)]
      )
+    votes = models.IntegerField(default=0)
+
 
     def was_created_recently(self):
         now = timezone.now()
