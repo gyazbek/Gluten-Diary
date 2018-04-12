@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Contact Us</h1>
+    <p class="lead">Got a burning question? Drop us a line using the form below.</p>
+</div>
+
+<div class=" my-3 p-3 bg-white rounded box-shadow">
+
+    {% crispy form %}
+
+  </div>
+{% endblock %}
