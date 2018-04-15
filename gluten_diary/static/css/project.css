@@ -37,8 +37,9 @@ footer {
 /* Common Customizations  */
 /**************************/
 .avatar{
-  width:160px;
-  height: 160px;
+  max-width: 160px;
+  width: 100%;
+  height: auto;
 }
 
 

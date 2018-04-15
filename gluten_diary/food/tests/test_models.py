@@ -32,15 +32,23 @@ class TestFood(TestCase):
     def test_get_absolute_url(self):
         self.assertEqual(self.food.get_absolute_url(), "/food/{0}/".format(self.food.pk))
 
-    def test_was_created_recently_with_future(self):
+    def test_was_created_recently_in_future(self):
         """
         was_created_recently() returns False for Foods whose created_on
         is in the future.
         """
         time = timezone.now() + datetime.timedelta(days=30)
         future_food = FoodFactory(created_on=time)
-        print(future_food.created_on)
         self.assertIs(future_food.was_created_recently(), False)
+
+    def test_was_created_recently_in_past(self):
+        """
+        was_created_recently() returns False for Foods whose created_on
+        is older than 1 day.
+        """
+        time = timezone.now() - datetime.timedelta(days=1, seconds=1)
+        past_food = FoodFactory(created_on=time)
+        self.assertIs(past_food.was_created_recently(), False)
 
 
 # class TestUser(TestCase):

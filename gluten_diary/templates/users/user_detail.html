@@ -5,7 +5,7 @@
 
 {% block content %}
   <div class="row user-profile">
-    <div class="main-col col-xs-12 col-sm-12 col-md-8 col-lg-8" >
+    <div class="main-col col-xs-12 col-sm-12 col-md-12 col-lg-8" >
       <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="panel panel-info">
           <div class="panel-heading">
@@ -17,13 +17,15 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-md-3 col-lg-3 " align="center">
+                <div class="avatar-container">
                 {% if object.avatar %}
                 <img alt="User Pic" src="{{object.avatar}}" class="rounded img-thumbnail avatar"> 
                 {% else %}
                 <img alt="User Pic" src="{% static 'images/placeholder_avatar.png' %}" class="rounded img-responsive avatar"> 
                 {% endif %}
               </div>
-              <div class=" col-md-9 col-lg-9 "> 
+              </div>
+              <div class="col-md-9 col-lg-9 "> 
                 <table class="table">
                   <tbody>
                     <tr>

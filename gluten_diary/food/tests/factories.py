@@ -23,7 +23,6 @@ class FoodFactory(factory.django.DjangoModelFactory):
     author = factory.SubFactory(UserFactory)
     reaction_scale = 5
     votes = 0
-
     
     @factory.post_generation
     def types(self, create, extracted, **kwargs):
