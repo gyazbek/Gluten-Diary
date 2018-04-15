@@ -55,6 +55,17 @@ footer {
 /*************************/
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
 
+
+/**************************/
+/* Signup Customizations  */
+/**************************/
+
+.sign-up-container  {
+  max-width: 430px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
 /*************************/
 /* Login Customizations  */
 /*************************/
@@ -64,6 +75,8 @@ footer {
   padding: 15px;
   margin: 0 auto;
 }
+
+
 
 .login #id_login{
   margin-bottom: -1px;
@@ -115,6 +128,7 @@ footer {
   border-radius: 0.1875rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
 }
+
 .comment-block textarea {
   width: 100%;
   resize: none;
@@ -141,14 +155,7 @@ footer {
   margin: -2px;
   cursor: pointer;
 }
-.comment-actions li.complain {
-  padding-right: 0.75rem;
-  border-right: 1px solid #e1e5eb;
-}
-.comment-actions li.reply {
-  padding-left: 0.75rem;
-  padding-right: 0.125rem;
-}
+
 .comment-actions li:hover {
   color: #0095ff;
 }

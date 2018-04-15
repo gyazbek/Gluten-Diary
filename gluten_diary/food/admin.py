@@ -4,11 +4,11 @@ from .models import Type, Brand, Food
 
 
 class BrandInline(admin.TabularInline):
-    model = Food.food_brands.through
+    model = Food.brands.through
     extra = 1
 
 class TypeInline(admin.TabularInline):
-    model = Food.food_types.through
+    model = Food.types.through
     extra = 1
 
 class FoodAdmin(admin.ModelAdmin):

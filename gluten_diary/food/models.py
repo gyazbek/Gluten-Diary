@@ -21,8 +21,8 @@ class Food(models.Model):
     notes = models.CharField(max_length=2500)
     created_on = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    food_types = models.ManyToManyField(Type)
-    food_brands = models.ManyToManyField(Brand)
+    types = models.ManyToManyField(Type, verbose_name="Type")
+    brands = models.ManyToManyField(Brand, verbose_name="Brand")
     reaction_scale = models.IntegerField(
         default=0,
         validators=[MaxValueValidator(10), MinValueValidator(0)]
@@ -34,6 +34,9 @@ class Food(models.Model):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.created_on <= now
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('food:detail', kwargs={'pk': self.pk}) 
     # Admin interface configuration
     was_created_recently.admin_order_field = 'created_on'
     was_created_recently.boolean = True

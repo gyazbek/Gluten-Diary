@@ -19,7 +19,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         so you can use {{ car }} etc. within the template
         """
         context = super(UserDetailView, self).get_context_data(**kwargs)
-        food_list_obj = Food.objects.filter(author=self.request.user, created_on__lte=timezone.now()).order_by('-created_on')
+        food_list_obj = Food.objects.filter(author=self.get_object(), created_on__lte=timezone.now()).order_by('-created_on')
         paginator = Paginator(food_list_obj, 5)
         page = self.request.GET.get('page')
         try:

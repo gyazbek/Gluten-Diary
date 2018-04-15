@@ -1,12 +1,46 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView,UpdateView
 from django.urls import reverse
 from django.db.models import F
 from django.views import generic
 from django.utils import timezone
+from dal import autocomplete
 from .models import Type, Brand, Food
-from .forms import FoodSearchForm
+from .forms import FoodSearchForm,FoodCreateForm,FoodUpdateForm
 
+
+class BrandAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Brand.objects.all()
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+        return qs
+
+class TypeAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Type.objects.all()
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+        return qs
+
+
+
+class FoodUpdate(LoginRequiredMixin,UpdateView):
+    model = Food
+    form_class = FoodUpdateForm
+    template_name = "food/update.html"
+
+
+class FoodCreate(LoginRequiredMixin,CreateView):
+    model = Food
+    form_class = FoodCreateForm
+    template_name = "food/create.html"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class IndexView(generic.ListView):
     template_name = 'food/index.html'

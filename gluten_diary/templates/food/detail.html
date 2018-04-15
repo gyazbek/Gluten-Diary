@@ -2,30 +2,29 @@
 {% load comments %}
 {% load crispy_forms_tags %}
 {% load static i18n %}
+{% load humanize %}
 {% block content %}
 
 <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-                
         <h1 class="display-4">{{food.title}}</h1>
-        
-
-      
 </div>
 
 <div class="my-3 p-3 bg-white rounded box-shadow">
         <div class="text-muted pt-3 row">
                 <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-                <div class="col pb-3 mb-0 small lh-125 border-bottom border-gray">                       
-                        {% if food.food_brands %}
-                        <p class="lead">{{ food.food_brands.all|join:", " }}</p>
+                <div class="col pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div>
+                        {% if food.brands %}
+                        <span class="lead">{{ food.brands.all|join:", " }}</span>
                         {% endif %}
-                        {% if food.food_types %}
-                        <span class="d-block">Category: {{ food.food_types.all|join:", " }}</span>
+                        {% if food.types %}
+                        <p class="">{{ food.types.all|join:", " }}</p>
                         {% endif %}
+                        </div>
                         <span class="d-block">Posted by <a href="{% url 'users:detail' food.author.username %}">{{food.author.user_avail_name}}</a></span>
                         <span class="d-block">Posted on {{food.created_on | date}}</span>
                 </div>
-                <div class="col"><p class="lead text-md-right text-lg-right text-sm-left">{{food.notes}}</p></div>
+                <div class="col"><p class="lead text-md-right text-lg-right text-sm-left">{% if food.author == request.user %}<a class="float-right" href="{% url 'food:update' food.id %}">Edit</a><br/>{% endif %}{{food.notes}}</p></div>
         </div>
 </div>
 <div class="comments">
@@ -45,9 +44,9 @@
                 <div class="comment-block">
                         <p class="comment-text">{{comment.comment}}</p>
                         <div class="bottom-comment">
-                                <div class="comment-date">{{comment.submit_date | date}}</div>
+                                <div class="comment-date">{{comment.submit_date | naturaltime}}</div>
                                 <ul class="comment-actions">
-                                        <li class="complain">Report</li>
+                                        <li class="complain"><a href="{% url 'comments-flag' comment.id %}">Report</a></li>
                                 </ul>
                         </div>
                 </div>

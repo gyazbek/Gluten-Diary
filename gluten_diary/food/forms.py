@@ -3,8 +3,55 @@ from django.utils.translation import ugettext as _
 from django import forms
 from django.conf import settings
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import HTML
-from .models import Type, Brand
+from crispy_forms.layout import Submit
+from dal import autocomplete
+
+
+from .models import Food, Type, Brand
+
+REACTION_CHOICES=[('0','No reaction'),
+                ('2','Somewhat reacted'),
+            ('5','Medium reaction'),
+             ('7','Reacted'),
+         ('10','Reacted strongly')]
+
+
+class FoodUpdateForm(forms.ModelForm):
+    reaction_scale = forms.ChoiceField(label="How strongly did you react?", choices=REACTION_CHOICES, widget=forms.RadioSelect())
+    class Meta:
+        model = Food
+        exclude = ['author','votes']
+        widgets = {
+            'notes': forms.Textarea(attrs={'rows': 5}),
+            'brands': autocomplete.ModelSelect2Multiple(url='food:brand-autocomplete'),
+            'types': autocomplete.ModelSelect2Multiple(url='food:type-autocomplete')
+        }
+    def __init__(self, *args, **kwargs):
+        super(FoodUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.include_media = False
+
+class FoodCreateForm(forms.ModelForm):
+    reaction_scale = forms.ChoiceField(label="How strongly did you react?", choices=REACTION_CHOICES, widget=forms.RadioSelect())
+    class Meta:
+        model = Food
+        exclude = ['author','votes']
+        widgets = {
+            'notes': forms.Textarea(attrs={'rows': 5}),
+            'brands': autocomplete.ModelSelect2Multiple(url='food:brand-autocomplete'),
+            'types': autocomplete.ModelSelect2Multiple(url='food:type-autocomplete')
+
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(FoodCreateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.include_media = False
+
+
+
 
 ORDER_CHOICES = (
     ('-created_on', _("Latest")),

@@ -1,0 +1,39 @@
+{% extends "comments/base.html" %}
+{% load i18n %}
+{% load static i18n %}
+{% load humanize %}
+
+{% block title %}{% trans "Flag this comment" %}{% endblock %}
+
+{% block content %}
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">{% trans "Really flag this comment?" %}</h1>
+</div>
+<div class="my-3 p-3 bg-white rounded box-shadow">
+        <div class="comment-wrap">
+                <div class="photo">
+                {% if comment.user.avatar %}
+                <img alt="User Pic" src="{{comment.user.avatar}}" class="rounded img-thumbnail avatar"> 
+                {% else %}
+                <img alt="User Pic" src="{% static 'images/placeholder_avatar.png' %}" class="rounded img-responsive avatar"> 
+                {% endif %}
+                {{comment.user.user_avail_name}}
+                </div>
+                <div class="comment-block">
+                        <p class="comment-text">{{comment.comment | linebreaks}}</p>
+                        <div class="bottom-comment">
+                                <div class="comment-date">{{comment.submit_date | naturaltime}}</div>
+                        </div>
+                </div>
+        </div>
+  <form action="." method="post">{% csrf_token %}
+    {% if next %}
+      <div><input type="hidden" name="next" value="{{ next }}" id="next"/></div>
+    {% endif %}
+    <p class="text-center submit form-group">
+      <input class="btn" type="submit" name="submit" value="{% trans "Flag" %}"/> or <a
+            href="{{ comment.get_absolute_url }}">cancel</a>
+    </p>
+  </form>
+</div>
+{% endblock %}
