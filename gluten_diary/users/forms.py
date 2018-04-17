@@ -1,3 +1,4 @@
+import sys
 from django.urls import reverse
 from django.utils.translation import ugettext as _
 from django import forms
@@ -5,15 +6,16 @@ from django.conf import settings
 from allauth.account.forms import LoginForm,SignupForm
 from allauth.account import app_settings
 from .models import User
-
+from django.core.files.images import get_image_dimensions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import HTML
+from crispy_forms.layout import Submit
+
 
 class ProfileForm(forms.ModelForm):
     def clean_avatar(self):
-        image = self.cleaned_data.get['avatar']
+        image = self.cleaned_data['avatar']
         if image:
-            from django.core.files.images import get_image_dimensions
             w, h = get_image_dimensions(image)
             if w < settings.MIN_AVATAR_IMAGE_WIDTH or h < settings.MIN_AVATAR_IMAGE_HEIGHT:
                 raise forms.ValidationError(u' The image needs to be at least ' +     str(settings.MIN_AVATAR_IMAGE_WIDTH) + 'px * ' + str(settings.MIN_AVATAR_IMAGE_HEIGHT) + 'px (or less).')
@@ -22,6 +24,13 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['name', 'username', 'email','avatar']
+        labels = {
+            'name': _('Name (If filled in, used publicly instead of username)'),
+        }
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Submit'))
+        super(ProfileForm, self).__init__(*args, **kwargs)
 
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):

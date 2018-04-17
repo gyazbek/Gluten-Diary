@@ -26,6 +26,7 @@ class Food(models.Model):
         default=0,
         validators=[MaxValueValidator(10), MinValueValidator(0)]
      )
+    published = models.BooleanField(default=True)
     votes = models.IntegerField(default=0)
     created_on = models.DateTimeField(default=timezone.now)
 

@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.db.models import F
 from django.views import generic
 from django.utils import timezone
+from django.http import Http404
 from dal import autocomplete
 from .models import Type, Brand, Food
 from .forms import FoodSearchForm,FoodCreateForm,FoodUpdateForm
@@ -62,13 +63,12 @@ class IndexView(generic.ListView):
         form = self.form_class(self.request.GET)
         
         if form.is_valid():
-            print(form.cleaned_data)
             q = form.cleaned_data['q']
             order = form.cleaned_data['order']
             brand = form.cleaned_data['brand']
             type = form.cleaned_data['type']
 
-        qs = Food.objects.all()
+        qs = Food.objects.all().filter(published=True)
 
         if not order:
             order = '-created_on'
@@ -89,8 +89,13 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Food
     template_name = 'food/detail.html'
-
-
+    def get_object(self, queryset=None):
+        obj = super(DetailView, self).get_object(queryset=queryset)
+        if obj.published or self.request.user.is_authenticated and obj.author == self.request.user:
+            return obj
+        else:
+            raise Http404()
+        
 
 
 def vote(request, question_id):

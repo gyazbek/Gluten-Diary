@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published food items."""
-        return Food.objects.filter(created_on__lte=timezone.now()).order_by('-created_on')[:5]
+        return Food.objects.filter(published=True,created_on__lte=timezone.now()).order_by('-created_on')[:5]
 
 
 

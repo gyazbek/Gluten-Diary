@@ -36,6 +36,9 @@ USE_TZ = True
 
 MIN_AVATAR_IMAGE_WIDTH = 160
 MIN_AVATAR_IMAGE_HEIGHT = 160
+AVATAR_IMAGE_RESIZE_WIDTH = 160
+AVATAR_IMAGE_RESIZE_HEIGHT = 160
+
 # DATABASES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
@@ -73,6 +76,8 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'sorl.thumbnail',
+
 ]
 LOCAL_APPS = [
     'gluten_diary.users.apps.UsersConfig',
@@ -247,11 +252,11 @@ MANAGERS = ADMINS
 # ------------------------------------------------------------------------------
 ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_ADAPTER = 'gluten_diary.users.adapters.AccountAdapter'
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
