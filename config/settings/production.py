@@ -1,5 +1,4 @@
 import logging
-
 from .base import *  # noqa
 from .base import env
 
@@ -18,18 +17,19 @@ DATABASES['default']['CONN_MAX_AGE'] = env.int('CONN_MAX_AGE', default=60)  # no
 
 # CACHES
 # ------------------------------------------------------------------------------
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': env('REDIS_URL'),
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            # Mimicing memcache behavior.
-            # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
-            'IGNORE_EXCEPTIONS': True,
-        }
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': env('REDIS_URL'),
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#             # Mimicing memcache behavior.
+#             # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
+#             'IGNORE_EXCEPTIONS': True,
+#         }
+#     }
+# }
+
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -60,35 +60,39 @@ SECURE_BROWSER_XSS_FILTER = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#x-frame-options
 X_FRAME_OPTIONS = 'DENY'
 
+
+
 # STORAGES
 # ------------------------------------------------------------------------------
 # https://django-storages.readthedocs.io/en/latest/#installation
-INSTALLED_APPS += ['storages']  # noqa F405
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_AUTO_CREATE_BUCKET = True
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_QUERYSTRING_AUTH = False
-# DO NOT change these unless you know what you're doing.
-_AWS_EXPIRY = 60 * 60 * 24 * 7
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': f'max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate',
-}
+# INSTALLED_APPS += ['storages']  # noqa F405
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_ACCESS_KEY_ID = env('DJANGO_AWS_ACCESS_KEY_ID')
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_SECRET_ACCESS_KEY = env('DJANGO_AWS_SECRET_ACCESS_KEY')
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_STORAGE_BUCKET_NAME = env('DJANGO_AWS_STORAGE_BUCKET_NAME')
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_AUTO_CREATE_BUCKET = True
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_QUERYSTRING_AUTH = False
+# # DO NOT change these unless you know what you're doing.
+# _AWS_EXPIRY = 60 * 60 * 24 * 7
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_S3_OBJECT_PARAMETERS = {
+#     'CacheControl': f'max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate',
+# }
+
 
 # STATIC
 # ------------------------
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # MEDIA
 # ------------------------------------------------------------------------------
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = '/media/'
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
@@ -113,7 +117,7 @@ DEFAULT_FROM_EMAIL = env(
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[Gluten Diary]')
+EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='Gluten Diary')
 
 # ADMIN
 # ------------------------------------------------------------------------------
