@@ -1,9 +1,13 @@
 {% extends "base.html" %}
-
 {% block title %}Forbidden (403){% endblock %}
-
 {% block content %}
-<h1>Forbidden (403)</h1>
-
-<p>CSRF verification failed. Request aborted.</p>
+<div class="row justify-content-center">
+    <div class="text-center col-md-6">
+        <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Forbidden!</h1>
+            <p class="lead">CSRF verification failed. Request aborted.</p>
+        </div>
+        <a href="/" class="btn btn-lg btn-block btn-outline-primary">Go Home</a>
+    </div>
+</div>
 {% endblock content %}

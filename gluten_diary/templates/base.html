@@ -7,7 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117902456-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-117902456-1');
+  </script>
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -38,9 +44,12 @@
         <a class="navbar-brand" href="{% url 'home' %}">Gluten Diary</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item ">
               <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'food:index' %}">Browse</a>
+              </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
@@ -64,7 +73,7 @@
             </li>
             {% endif %}
             <li class="nav-item">
-              <a id="" class="nav-link" href="{% url 'food:create' %}">{% trans "Add Food Entry" %}</a>
+              <a id="" class="nav-link" href="{% url 'food:create' %}">{% trans "Add Entry" %}</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'food:index' %}">
@@ -115,7 +124,7 @@
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href="{% url 'contact' %}">Contact</a></li>
               <li><a class="text-muted" href="#">Source</a></li>
-              <li><a class="text-muted" href="#">Privacy</a></li>            </ul>
+              <li><a class="text-muted" href="{% url 'privacyterms' %}">Privacy Policy & Terms</a></li>            </ul>
             </div>
           </div>
         </div>

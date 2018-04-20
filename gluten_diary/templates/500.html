@@ -1,13 +1,16 @@
 {% extends "base.html" %}
-
 {% block title %}Server Error{% endblock %}
-
 {% block content %}
-<h1>Ooops!!! 500</h1>
-
-<h3>Looks like something went wrong!</h3>
-
-<p>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</p>
+<div class="row justify-content-center">
+    <div class="text-center col-md-6">
+        <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Looks like something went wrong!</h1>
+            <p class="lead">>We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing.</p>
+            
+        </div>
+        <a href="/" class="btn btn-lg btn-block btn-outline-primary">Go Home</a>
+    </div>
+</div>
 {% endblock content %}
 
 
