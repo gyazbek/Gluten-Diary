@@ -20,5 +20,5 @@ coreapi==2.3.3  # https://github.com/core-api/python-client
 
 # 3RD
 django-contrib-comments==1.8.0
-django-autocomplete-light==3.3.0
+django-autocomplete-light==3.2.10
 sorl-thumbnail==12.4.1
