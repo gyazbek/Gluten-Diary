@@ -7,7 +7,7 @@ from .forms import ProfileForm
 from food.models import Type, Brand, Food
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserDetailView(DetailView):
     model = User
     # These next two lines tell the view to index lookups by username
     slug_field = "username"
