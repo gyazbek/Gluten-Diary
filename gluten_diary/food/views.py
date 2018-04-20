@@ -74,10 +74,10 @@ class IndexView(generic.ListView):
             order = '-created_on'
             
         if brand:
-            qs = qs.filter(food_brands__in=[brand.pk])
+            qs = qs.filter(brands__in=[brand.pk])
 
         if type:
-            qs = qs.filter(food_types__in=[type.pk])
+            qs = qs.filter(types__in=[type.pk])
 
         if q and q != '':
             qs = qs.filter(title__icontains = q)
