@@ -24,16 +24,16 @@ CACHES = {
     }
 }
 
- DATABASES = {
-        'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisdb',
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE':   'django.db.backends.postgresql_psycopg2',
+        'NAME':     'travisdb',
+        'USER':     'postgres',
+        'PASSWORD': '',
+        'HOST':     'localhost',
+        'PORT':     '',
     }
+}
 # TEMPLATES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#templates
