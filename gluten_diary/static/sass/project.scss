@@ -1,7 +1,3 @@
-
-
-
-
 // project specific CSS goes here
 
 ////////////////////////////////
@@ -34,4 +30,214 @@ $red: #b94a48;
   background-color: $pink;
   border-color: $dark-pink;
   color: $red;
+}
+
+/* These styles are generated from project.scss. */
+
+.alert-debug {
+  color: black;
+  background-color: white;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 220px;
+}
+
+
+/**************************/
+/* Footer Customizations  */
+/**************************/
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 190px;
+}
+
+/**************************/
+/* Common Customizations  */
+/**************************/
+.avatar{
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+}
+
+
+/*************************/
+/* Navbar Customizations  */
+/*************************/
+
+.navbar {
+  background-color: #8ce88c;
+}
+
+/*************************/
+/* Home page Customizations  */
+/*************************/
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+
+/**************************/
+/* Signup Customizations  */
+/**************************/
+
+.sign-up-container  {
+  max-width: 430px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+/*************************/
+/* Login Customizations  */
+/*************************/
+
+.sign-in-container  {
+  max-width: 430px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+
+
+.login #id_login{
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.login #id_password{
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+
+/***************************************/
+/* Comment form / list Customizations  */
+/***************************************/
+
+.comments {
+  margin: 2.5rem auto 0;
+  max-width: 60.75rem;
+  padding: 0 1.25rem;
+}
+
+.comment-wrap {
+  margin-bottom: 1.25rem;
+  display: table;
+  width: 100%;
+  min-height: 5.3125rem;
+}
+
+.photo {
+  padding-top: 0.625rem;
+  display: table-cell;
+  width: 3.5rem;
+}
+.photo .avatar {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 50%;
+  background-size: contain;
+}
+
+.comment-block {
+  padding: 1rem;
+  background-color: #fff;
+  display: table-cell;
+  vertical-align: top;
+  border-radius: 0.1875rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.comment-block textarea {
+  width: 100%;
+  resize: none;
+}
+
+.comment-text {
+  margin-bottom: 1.25rem;
+}
+
+.bottom-comment {
+  color: #acb4c2;
+  font-size: 0.875rem;
+}
+
+.comment-date {
+  float: left;
+}
+
+.comment-actions {
+  float: right;
+}
+.comment-actions li {
+  display: inline;
+  margin: -2px;
+  cursor: pointer;
+}
+
+.comment-actions li:hover {
+  color: #0095ff;
+}
+
+/*********************************/
+/* User profile Customizations   */
+/*********************************/
+
+.user-profile .main-col {
+  margin: 0 auto;
+} 
+
+
+
+.reaction-slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 250px; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  background: linear-gradient(to right ,rgb(175, 76, 76),#4CAF50);
+}
+
+
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.reaction-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: rgb(227, 233, 227);
+  cursor: pointer; /* Cursor on hover */
+}
+
+.reaction-slider::-moz-range-thumb {
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: rgb(227, 233, 227);
+  cursor: pointer; /* Cursor on hover */
+}
+
+
+.dropdown-filters select {
+  width: auto;
 }

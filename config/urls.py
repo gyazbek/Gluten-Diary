@@ -14,8 +14,6 @@ urlpatterns = [
     path('',cache_page(5)( views.IndexView.as_view()), name='home'),
     path('food/', include('food.urls')),
     url(r'^comments/', include('django_comments.urls')),
-
-    # url(r"^$", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path('contact/', views.ContactView.as_view(), name='contact'),
     url(
         r"^about/$",

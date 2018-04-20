@@ -12,7 +12,9 @@ class ContactForm(forms.Form):
     )
     
     def send_email(self):
-        pass
+        return send_mail('New Contact Message', self.cleaned_data['content'], self.cleaned_data['email'], ['admin@glutendiary.com',])
+
+
     def __init__(self, *args, **kwargs):
         super(ContactForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
