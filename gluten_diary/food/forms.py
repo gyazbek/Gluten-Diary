@@ -20,7 +20,7 @@ class FoodUpdateForm(forms.ModelForm):
     reaction_scale = forms.ChoiceField(label="How strongly did you react?", choices=REACTION_CHOICES, widget=forms.RadioSelect())
     class Meta:
         model = Food
-        exclude = ['author','votes']
+        exclude = ['author','votes', 'created_on']
         widgets = {
             'notes': forms.Textarea(attrs={'rows': 5}),
             'brands': autocomplete.ModelSelect2Multiple(url='food:brand-autocomplete'),
@@ -36,7 +36,7 @@ class FoodCreateForm(forms.ModelForm):
     reaction_scale = forms.ChoiceField(label="How strongly did you react?", choices=REACTION_CHOICES, widget=forms.RadioSelect())
     class Meta:
         model = Food
-        exclude = ['author','votes']
+        exclude = ['author','votes','created_on']
         widgets = {
             'notes': forms.Textarea(attrs={'rows': 5}),
             'brands': autocomplete.ModelSelect2Multiple(url='food:brand-autocomplete'),
