@@ -109,6 +109,7 @@
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href="{% url 'home' %}">Home</a></li>
               <li><a class="text-muted" href="{% url 'about' %}">About</a></li>
+              <li><a class="text-muted" href="{% url 'food:create' %}">{% trans "Add Entry" %}</a></li>
             </ul>
           </div>
           <div class="col-6 col-md">
@@ -123,7 +124,7 @@
             <h5>About</h5>
             <ul class="list-unstyled text-small">
               <li><a class="text-muted" href="{% url 'contact' %}">Contact</a></li>
-              <li><a class="text-muted" href="#">Source</a></li>
+              <li><a class="text-muted" href="https://github.com/gyazbek/Gluten-Diary">Source Code</a></li>
               <li><a class="text-muted" href="{% url 'privacyterms' %}">Privacy Policy & Terms</a></li>            </ul>
             </div>
           </div>
