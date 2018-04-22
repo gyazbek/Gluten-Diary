@@ -7,12 +7,12 @@
     <h1 class="display-4">Gluten Diary</h1>
     <p class="lead">Keep a diary of gluten reactions, and share with others.</p>
 </div>
-<div class="clearfix">
-    <form>
-    <div class="float-left dropdown-filters">
+<div class="form-filters clearfix">
+    <form class="">
+    <div class="form-group float-left dropdown-filters">
         {{ form.q }}
     </div>
-    <div class="float-right dropdown-filters">
+    <div class="form-group float-right dropdown-filters">
         {{ form.order }}
         {{ form.type }}
         {{ form.brand }}

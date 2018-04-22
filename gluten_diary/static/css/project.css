@@ -171,3 +171,26 @@ footer {
 .dropdown-filters select {
   width: auto;
 }
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 991.98px) {
+  .dropdown-filters select {
+    max-width: 150px;
+  }
+}
+
+/* mid case */
+@media (min-width: 568px) and (max-width: 576px) {
+  #q, .dropdown-filters select {
+    max-width: 100px;
+  }
+}
+
+
+/* Small screens */
+@media (max-width: 567px) {
+  #q, .form-filters .form-group, .dropdown-filters select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
