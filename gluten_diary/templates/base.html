@@ -55,20 +55,16 @@
             </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
-              {# URL provided by django-allauth/account/urls.py #}
               <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% trans "Dashboard" %}</a>
             </li>
             <li class="nav-item">
-              {# URL provided by django-allauth/account/urls.py #}
               <a class="nav-link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
             </li>
             {% else %}
             <li class="nav-item">
-              {# URL provided by django-allauth/account/urls.py #}
               <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
             </li>
             <li class="nav-item">
-              {# URL provided by django-allauth/account/urls.py #}
               <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
             </li>
             {% endif %}
@@ -84,20 +80,15 @@
       </nav>
       
     </div>
-    
     <div class="container">
-      
       {% if messages %}
       {% for message in messages %}
       <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
       {% endfor %}
       {% endif %}
-      
       {% block content %}
       {% endblock content %}
-
     </div> <!-- /container -->
-    
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
       <div class="container">
         <div class="row">
@@ -131,7 +122,6 @@
         </div>
       </footer>
       {% block modal %}{% endblock modal %}
-      
       <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
@@ -145,5 +135,3 @@
         {% endblock javascript %}
       </body>
       </html>
-      
-      

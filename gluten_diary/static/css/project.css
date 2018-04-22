@@ -1,3 +1,4 @@
+/* These styles are generated from project.scss. */
 .alert-debug {
   color: black;
   background-color: white;
@@ -14,6 +15,7 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 220px;
@@ -33,21 +35,19 @@ footer {
 /**************************/
 /* Common Customizations  */
 /**************************/
-.avatar{
+.avatar {
   max-width: 160px;
   width: 100%;
   height: auto;
 }
 
 .title-link {
-  color:inherit;
+  color: inherit;
 }
-
 
 /*************************/
 /* Navbar Customizations  */
 /*************************/
-
 .navbar {
   background-color: #8ce88c;
 }
@@ -55,14 +55,14 @@ footer {
 /*************************/
 /* Home page Customizations  */
 /*************************/
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
 
 /**************************/
 /* Signup Customizations  */
 /**************************/
-
-.sign-up-container  {
+.sign-up-container {
   max-width: 430px;
   padding: 15px;
   margin: 0 auto;
@@ -71,30 +71,27 @@ footer {
 /*************************/
 /* Login Customizations  */
 /*************************/
-
-.sign-in-container  {
+.sign-in-container {
   max-width: 430px;
   padding: 15px;
   margin: 0 auto;
 }
 
-.login #id_login{
+.login #id_login {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.login #id_password{
+
+.login #id_password {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-
-
 /***************************************/
 /* Comment form / list Customizations  */
 /***************************************/
-
 .comments {
   margin: 2.5rem auto 0;
   max-width: 60.75rem;
@@ -113,6 +110,7 @@ footer {
   display: table-cell;
   width: 3.5rem;
 }
+
 .photo .avatar {
   height: 2.25rem;
   width: 2.25rem;
@@ -150,6 +148,7 @@ footer {
 .comment-actions {
   float: right;
 }
+
 .comment-actions li {
   display: inline;
   margin: -2px;
@@ -163,10 +162,9 @@ footer {
 /*********************************/
 /* User profile Customizations   */
 /*********************************/
-
 .user-profile .main-col {
   margin: 0 auto;
-} 
+}
 
 .dropdown-filters select {
   width: auto;
@@ -186,7 +184,6 @@ footer {
   }
 }
 
-
 /* Small screens */
 @media (max-width: 567px) {
   #q, .form-filters .form-group, .dropdown-filters select {
@@ -194,3 +191,4 @@ footer {
     margin-bottom: 10px;
   }
 }
+/*# sourceMappingURL=project.css.map */
