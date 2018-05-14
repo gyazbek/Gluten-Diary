@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load comments %}
+{% load thumbnail %}
 {% load crispy_forms_tags %}
 {% load static i18n %}
 {% load humanize %}
@@ -34,8 +35,14 @@
         {% for comment in comment_list %}
         <div class="comment-wrap">
                 <div class="photo">
+                        
+
+                        
                 {% if comment.user.avatar %}
-                <img alt="User Pic" src="{{comment.user.avatar}}" class="rounded img-thumbnail avatar"> 
+
+                {% thumbnail comment.user.avatar "160x160" crop="center" as im %}
+                <img alt="User Pic" class="rounded img-thumbnail avatar" src="{{ im.url }}">
+                {% endthumbnail %}
                 {% else %}
                 <img alt="User Pic" src="{% static 'images/placeholder_avatar.png' %}" class="rounded img-responsive avatar"> 
                 {% endif %}
